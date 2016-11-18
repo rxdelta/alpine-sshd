@@ -1,0 +1,11 @@
+version: '2'
+
+services:
+
+  sshd:
+    build: .
+    #volumes:
+    #  - "${PWD}/api:/api"
+    ports:
+      - "0.0.0.0:10022:22/tcp"
+
