@@ -4,8 +4,10 @@ services:
 
   sshd:
     build: .
-    #volumes:
-    #  - "${PWD}/api:/api"
+    volumes:
+      - "${PWD}/sshuser/.ssh/id_rsa:/home/sshuser/.ssh/id_rsa"
+      - "${PWD}/sshuser/.ssh/id_rsa.pub:/home/sshuser/.ssh/id_rsa.pub"
+      - "${PWD}/sshuser/.ssh/authorized_keys:/home/sshuser/.ssh/authorized_keys"
     ports:
       - "0.0.0.0:10022:22/tcp"
 

@@ -129,7 +129,7 @@ Subsystem	sftp	/usr/lib/ssh/sftp-server
 # the following are HPN related configuration options
 # tcp receive buffer polling. disable in non autotuning kernels
 #TcpRcvBufPoll yes
- 
+
 # disable hpn performance boosts
 #HPNDisabled no
 
@@ -143,3 +143,4 @@ Subsystem	sftp	/usr/lib/ssh/sftp-server
 #	AllowTcpForwarding no
 #	PermitTTY no
 #	ForceCommand cvs server
+
