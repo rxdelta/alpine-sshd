@@ -1,9 +1,9 @@
 # vim:set ft=dockerfile:
-FROM gliderlabs/alpine:edge
+FROM andrius/alpine-lshell:edge
 
 MAINTAINER Andrius Kairiukstis <andrius@kairiukstis.com>
 
-RUN apk --update add bash openssh \
+RUN apk --update add openssh \
 &&  apk add autossh --update-cache --repository http://dl-4.alpinelinux.org/alpine/edge/testing/ --allow-untrusted \
 &&  rm -rf /var/cache/apk/* /tmp/* /var/tmp/*
 
@@ -17,30 +17,18 @@ RUN ssh-keygen -f   /etc/ssh/ssh_host_rsa_key     -N '' -t rsa     \
 COPY ssh_config     /etc/ssh/ssh_config
 COPY sshd_config    /etc/ssh/sshd_config
 
-RUN chown root:root /etc/ssh/ssh_config  \
-&&  chmod 0600      /etc/ssh/ssh_config  \
-&&  chown root:root /etc/ssh/sshd_config \
-&&  chmod 0600      /etc/ssh/sshd_config
-
+RUN chown root:root /etc/ssh  \
+&&  chmod 0600      /etc/ssh/*
 
 # create restricred user 'sshuser'
-RUN ln -s /bin/bash /bin/rbash         \
-&&  adduser -D -s   /bin/rbash sshuser \
+RUN adduser -D -s   /usr/bin/lshell sshuser \
 \
 &&  mkdir -p        /root/.ssh /home/sshuser/.ssh \
 &&  chmod 0700      /root/.ssh /home/sshuser/.ssh
 
-COPY .bash_profile  /home/sshuser/
+RUN chown -R sshuser:sshuser /home/sshuser
 
-RUN chown -R sshuser:sshuser /home/sshuser \
-\
-&&  chown root:root /home/sshuser/.bash_profile \
-&&  chmod 0444      /home/sshuser/.bash_profile
-# or chattr from e2fsprogs-extra: https://pkgs.alpinelinux.org/contents?branch=edge&name=e2fsprogs-extra&arch=armhf&repo=main)
-# chattr +i      /home/sshuser/.bash_profile
-
-
-SHELL ["/bin/bash"]
+COPY lshell.conf    /etc/lshell.conf
 
 EXPOSE 22
 

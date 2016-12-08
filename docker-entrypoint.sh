@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/sh
 
 # function that generates random password
 genpasswd() {
@@ -6,15 +6,6 @@ genpasswd() {
   [ "$l" == "" ] && l=20
   tr -dc A-Za-z0-9_ < /dev/urandom | head -c ${l} | xargs
 }
-
-mkdir -p /home/sshuser/.commands
-allowed_apps=(autossh ssh)
-
-for app in "${allowed_apps[@]}"; do
-  location=`which ${app}`
-  ln -s ${location} /home/sshuser/.commands/${app}
-done
-chown -R root:root /home/sshuser/.commands
 
 root_password=`genpasswd`
 echo "root:${root_password}" | chpasswd 2>/dev/null
