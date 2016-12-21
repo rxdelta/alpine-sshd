@@ -4,6 +4,8 @@ services:
 
   sshd:
     build: .
+    environment:
+      - SSHUSERS=sshuser sshuser1 sshuser2
     volumes:
       - "${PWD}/sshuser/.ssh/id_rsa:/home/sshuser/.ssh/id_rsa"
       - "${PWD}/sshuser/.ssh/id_rsa.pub:/home/sshuser/.ssh/id_rsa.pub"
