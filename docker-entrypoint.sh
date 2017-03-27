@@ -31,4 +31,3 @@ done
 echo "Executing command: $@"
 
 exec "$@"
-
