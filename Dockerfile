@@ -1,10 +1,12 @@
 # vim:set ft=dockerfile:
-FROM andrius/alpine-lshell:edge
+FROM andrius/alpine-lshell:latest
 
 MAINTAINER Andrius Kairiukstis <andrius@kairiukstis.com>
 
-RUN apk --update add bash openssh \
-&&  apk add autossh --update-cache --repository http://dl-4.alpinelinux.org/alpine/edge/testing/ --allow-untrusted \
+RUN apk --update add \
+      bash \
+      openssh \
+      autossh \
 &&  rm -rf /var/cache/apk/* /tmp/* /var/tmp/*
 
 # generate ssh keys
@@ -32,4 +34,3 @@ SHELL ["bash"]
 
 ENTRYPOINT ["/docker-entrypoint.sh"]
 CMD ["/usr/sbin/sshd", "-D", "-e", "-f", "/etc/ssh/sshd_config"]
-
