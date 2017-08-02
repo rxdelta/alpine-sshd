@@ -10,7 +10,7 @@ RUN apk --update add \
 &&  rm -rf /var/cache/apk/* /tmp/* /var/tmp/*
 
 # cleanup motd
-echo "" > /etc/motd
+RUN echo "" > /etc/motd
 
 # generate ssh keys
 RUN ssh-keygen -f   /etc/ssh/ssh_host_rsa_key     -N '' -t rsa     \
