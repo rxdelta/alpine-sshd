@@ -9,6 +9,9 @@ RUN apk --update add \
       autossh \
 &&  rm -rf /var/cache/apk/* /tmp/* /var/tmp/*
 
+# cleanup motd
+echo "" > /etc/motd
+
 # generate ssh keys
 RUN ssh-keygen -f   /etc/ssh/ssh_host_rsa_key     -N '' -t rsa     \
 &&  ssh-keygen -f   /etc/ssh/ssh_host_dsa_key     -N '' -t dsa     \
@@ -29,6 +32,7 @@ COPY lshell.conf    /etc/lshell.conf
 EXPOSE 22
 
 COPY docker-entrypoint.sh /docker-entrypoint.sh
+RUN ln -s /docker-entrypoint.sh /create-users
 
 SHELL ["bash"]
 

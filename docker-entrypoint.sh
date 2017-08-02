@@ -9,7 +9,6 @@ genpasswd() {
 
 root_password=`genpasswd`
 echo "root:${root_password}" | chpasswd 2>/dev/null
-echo "New root password: ${user_password}"
 echo ${root_password} > /root/ssh-password-root.txt
 chmod 0400 /root/ssh-password-root.txt
 
@@ -28,6 +27,6 @@ do
   chmod 0400 /root/ssh-password-${user}.txt
 done
 
-echo "Executing command: $@"
+# echo "Executing command: $@"
 
 exec "$@"
