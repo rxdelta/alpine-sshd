@@ -1,5 +1,5 @@
 # vim:set ft=dockerfile:
-FROM andrius/alpine-lshell:latest
+FROM andrius/alpine-lshell:edge
 
 MAINTAINER Andrius Kairiukstis <andrius@kairiukstis.com>
 
