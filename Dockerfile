@@ -4,7 +4,6 @@ FROM andrius/alpine-lshell:edge
 MAINTAINER Andrius Kairiukstis <andrius@kairiukstis.com>
 
 RUN apk --update add \
-      bash \
       openssh \
       autossh \
 &&  rm -rf /var/cache/apk/* /tmp/* /var/tmp/*
@@ -33,8 +32,6 @@ EXPOSE 22
 
 COPY docker-entrypoint.sh /docker-entrypoint.sh
 RUN ln -s /docker-entrypoint.sh /create-users
-
-SHELL ["bash"]
 
 ENTRYPOINT ["/docker-entrypoint.sh"]
 CMD ["/usr/sbin/sshd", "-D", "-e", "-f", "/etc/ssh/sshd_config"]
