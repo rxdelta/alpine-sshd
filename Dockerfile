@@ -4,6 +4,7 @@ FROM andrius/alpine-lshell:edge
 MAINTAINER Andrius Kairiukstis <andrius@kairiukstis.com>
 
 RUN apk --update add \
+      bash \
       openssh \
       autossh \
 &&  rm -rf /var/cache/apk/* /tmp/* /var/tmp/*
