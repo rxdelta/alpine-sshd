@@ -5,6 +5,7 @@ MAINTAINER Andrius Kairiukstis <andrius@kairiukstis.com>
 
 RUN apk --update add \
       bash \
+      sudo \
       openssh \
       netcat-openbsd \
       autossh \
