@@ -1,11 +1,12 @@
 # vim:set ft=dockerfile:
-FROM andrius/alpine-lshell:edge
+FROM andrius/alpine-lshell:latest
 
 MAINTAINER Andrius Kairiukstis <andrius@kairiukstis.com>
 
 RUN apk --update add \
       bash \
       openssh \
+      netcat-openbsd \
       autossh \
 &&  rm -rf /var/cache/apk/* /tmp/* /var/tmp/*
 
