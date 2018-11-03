@@ -108,7 +108,7 @@ X11Forwarding yes
 #UseLogin no
 #UsePrivilegeSeparation sandbox
 #PermitUserEnvironment no
-#Compression delayed
+# Compression delayed
 Compression yes
 TCPKeepAlive no
 ClientAliveInterval 8
@@ -123,6 +123,9 @@ PermitTunnel yes
 # no default banner path
 #Banner none
 
+# Allow client to pass locale environment variables
+AcceptEnv LANG LC_* LANGUAGE TMUX
+
 # override default of no subsystems
 Subsystem	sftp	/usr/lib/ssh/sftp-server
 
@@ -135,7 +138,6 @@ Subsystem	sftp	/usr/lib/ssh/sftp-server
 
 # buffer size for hpn to non-hpn connections
 #HPNBufferSize 2048
-
 
 # Example of overriding settings on a per-user basis
 #Match User anoncvs

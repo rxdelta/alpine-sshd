@@ -71,6 +71,6 @@ Host *
     PermitLocalCommand yes
     ControlMaster auto
     ControlPath  /tmp/ssh-control-%r-%h-%p
-    SendEnv LANG LANGUAGE LC_*
+    SendEnv LANG LANGUAGE LC_* TMUX
     LogLevel ERROR
 

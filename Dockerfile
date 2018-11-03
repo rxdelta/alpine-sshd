@@ -1,7 +1,7 @@
 # vim:set ft=dockerfile:
 FROM andrius/alpine-lshell:latest
 
-MAINTAINER Andrius Kairiukstis <andrius@kairiukstis.com>
+LABEL maintainer="Andrius Kairiukstis <k@andrius.mobi>"
 
 RUN apk --update add \
       bash \
