@@ -1,4 +1,3 @@
-SSHD server and jump box
+SSHD server sandbox
 ========================
-
 

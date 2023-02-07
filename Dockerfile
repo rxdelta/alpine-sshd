@@ -1,14 +1,11 @@
 # vim:set ft=dockerfile:
-FROM andrius/alpine-lshell:latest
+FROM alpine:latest
 
-LABEL maintainer="Andrius Kairiukstis <k@andrius.mobi>"
+LABEL maintainer="Mostafa Nazari <rxdelta@github,gmail,twitter,...>"
 
 RUN apk --update add \
       bash \
-      sudo \
       openssh \
-      netcat-openbsd \
-      autossh \
 &&  rm -rf /var/cache/apk/* /tmp/* /var/tmp/*
 
 # cleanup motd
@@ -21,15 +18,10 @@ RUN ssh-keygen -f   /etc/ssh/ssh_host_rsa_key     -N '' -t rsa     \
 &&  ssh-keygen -f   /etc/ssh/ssh_host_ed25519_key -N '' -t ed25519 \
 &&  cp -a /etc/ssh  /etc/ssh.default
 
-COPY ssh_config     /etc/ssh/ssh_config
-COPY sshd_config    /etc/ssh/sshd_config
-
 RUN chown root:root /etc/ssh  \
 &&  chmod 0600      /etc/ssh/* \
 &&  mkdir -p        /root/.ssh \
 &&  chmod 0700      /root/.ssh
-
-COPY lshell.conf    /etc/lshell.conf
 
 EXPOSE 22
 

@@ -5,11 +5,10 @@ services:
   sshd:
     build: .
     environment:
-      - SSHUSERS=sshuser sshuser1 sshuser2
-    volumes:
-      - "${PWD}/sshuser/.ssh/id_rsa:/home/sshuser/.ssh/id_rsa"
-      - "${PWD}/sshuser/.ssh/id_rsa.pub:/home/sshuser/.ssh/id_rsa.pub"
-      - "${PWD}/sshuser/.ssh/authorized_keys:/home/sshuser/.ssh/authorized_keys"
+      - 'SSH_USERHASH_ALL=user1:pass1 user2:pass2'
+        #    volumes:
+        #      - "${PWD}/user1:/home/user1"
+        
     ports:
-      - "0.0.0.0:10022:22/tcp"
+      - "0.0.0.0:2222:22/tcp"
 
